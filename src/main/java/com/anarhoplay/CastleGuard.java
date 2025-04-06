@@ -101,7 +101,7 @@ public class CastleGuard extends JavaPlugin implements Listener {
 
     private void loadSchematic() {
         try {
-            Path schematicPath = Paths.get(getDataFolder().toPath().toString(), "castle.schem");
+            Path schematicPath = Paths.get(getDataFolder().toPath().toString(), "castle.schematic");
             if (!Files.exists(schematicPath)) {
                 saveResource("castle.schematic", false);
             }
