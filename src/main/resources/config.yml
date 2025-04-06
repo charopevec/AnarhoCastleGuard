@@ -1,0 +1,17 @@
+rewards:
+  - material: DIAMOND
+    amount: 5
+    chance: 0.5
+    rarity: "common"
+  - material: NETHERITE_INGOT
+    amount: 1
+    chance: 0.1
+    rarity: "legendary"
+  - material: EMERALD
+    amount: 3
+    chance: 0.3
+    rarity: "rare"
+  - material: GOLD_INGOT
+    amount: 10
+    chance: 0.2
+    rarity: "common"
