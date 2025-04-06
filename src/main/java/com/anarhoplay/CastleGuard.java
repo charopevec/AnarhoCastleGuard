@@ -1,6 +1,8 @@
 package com.anarhoplay;
 
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.math.BlockVector3;
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.flags.Flags;
@@ -10,7 +12,6 @@ import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -83,15 +84,22 @@ public class CastleGuard extends JavaPlugin {
     private void startEvent(Player player) {
         eventActive = true;
         eventLocation = player.getLocation();
-        World world = eventLocation.getWorld();
+        org.bukkit.World world = eventLocation.getWorld();
 
         // Создание региона WorldGuard
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        RegionManager regions = container.get(world);
+        com.sk89q.worldedit.world.World worldEditWorld = com.sk89q.worldedit.bukkit.BukkitAdapter.adapt(world);
+        RegionManager regions = container.get(worldEditWorld);
+        com.sk89q.worldedit.math.BlockVector3 pos1 = com.sk89q.worldedit.math.BlockVector3.at(
+            eventLocation.getX() - 50, eventLocation.getY() - 50, eventLocation.getZ() - 50
+        );
+        com.sk89q.worldedit.math.BlockVector3 pos2 = com.sk89q.worldedit.math.BlockVector3.at(
+            eventLocation.getX() + 50, eventLocation.getY() + 50, eventLocation.getZ() + 50
+        );
         ProtectedCuboidRegion region = new ProtectedCuboidRegion(
             "castle_event_" + System.currentTimeMillis(),
-            eventLocation.clone().add(-50, -50, -50).toVector().toBlockVector(),
-            eventLocation.clone().add(50, 50, 50).toVector().toBlockVector()
+            pos1,
+            pos2
         );
         region.setFlag(Flags.PVP, StateFlag.State.ALLOW);
         region.setFlag(Flags.DAMAGE_ANIMALS, StateFlag.State.ALLOW);
