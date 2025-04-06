@@ -1,0 +1,23 @@
+name: AnarhoCastleGuard
+version: 1.0
+main: com.anarhoplay.CastleGuard
+api-version: 1.16
+author: AnarhoPlay
+description: Защита замка для mc.anarhoplay.top
+depend:
+  - WorldEdit
+  - WorldGuard
+
+commands:
+  castle:
+    description: Управление ивентом
+    usage: /castle [start]
+    permission: castleguard.use
+  claimloot:
+    description: Получить лут
+    usage: /claimloot
+
+permissions:
+  castleguard.use:
+    description: Доступ к командам
+    default: op
