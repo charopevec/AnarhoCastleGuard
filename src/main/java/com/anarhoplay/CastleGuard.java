@@ -103,7 +103,7 @@ public class CastleGuard extends JavaPlugin implements Listener {
         try {
             Path schematicPath = Paths.get(getDataFolder().toPath().toString(), "castle.schem");
             if (!Files.exists(schematicPath)) {
-                saveResource("castle.schem", false);
+                saveResource("castle.schematic", false);
             }
             InputStream inputStream = Files.newInputStream(schematicPath);
             ClipboardFormat format = ClipboardFormats.findByFile(schematicPath.toFile());
