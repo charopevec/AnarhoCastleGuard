@@ -1,1 +1,2 @@
 # AnarhoCastleGuard
+Запуск GitHub Actions
